@@ -1,4 +1,5 @@
 const MS_PER_S = 1000;
+const re = /^(\d+)([dwmyh]{1})$/i;
 
 const isLocalStorageAvailable = (() => {
   try {
@@ -43,11 +44,6 @@ const parseJiraLikePeriod = (input) => {
 
       case 'h': {
         result.setHours(result.getHours() + amount);
-        return result;
-      }
-
-      case 'm': {
-        result.setMinutes(result.getMinutes() + amount);
         return result;
       }
     }
