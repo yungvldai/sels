@@ -9,20 +9,25 @@ sels - safe expirable **localStorage**
 
 *Эта библиотека решает обе проблемы*
 
-## Установка
+## Установка и использование
 
-```
+```bash
 npm i sels
 ```
 
-## Использование
-
-```
+```js
 import sels from 'sels';
 
-...
-
 sels.set('key', 'value');
+```
+
+или
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/yungvldai/sels@master/build/index.min.js"></script>
+```
+```js
+Sels.set('key', 'value');
 ```
 
 ## Типы
