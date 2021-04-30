@@ -14,8 +14,7 @@ module.exports = {
     filename: '[name].js',
     library: 'Sels',
     libraryTarget: 'umd',
-    libraryExport: 'default',
-    umdNamedDefine: true
+    libraryExport: 'default'
   },
   resolve: {
     alias: {
