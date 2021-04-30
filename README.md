@@ -25,7 +25,7 @@ interface IRecordOptions {
   expires?: string | Date
 }
 
-type RecordValueType = string | boolean | number;
+type RecordValue = string | boolean | number;
 ```
 
 ## Методы
