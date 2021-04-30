@@ -153,6 +153,8 @@ var set = function set(key, value, options) {
 
   if (expires) {
     localStorage.setItem("".concat(key).concat(EXPIRES_KEY_SUFFIX), String(expires));
+  } else {
+    localStorage.removeItem("".concat(key).concat(EXPIRES_KEY_SUFFIX));
   }
 
   return true;
@@ -167,6 +169,11 @@ var remove = function remove(key) {
   return true;
 };
 
+var deleteExpired = function deleteExpired(key) {
+  localStorage.removeItem(key);
+  localStorage.removeItem("".concat(key).concat(EXPIRES_KEY_SUFFIX));
+};
+
 var get = function get(key) {
   return new Promise(function (resolve, reject) {
     if (!avail) {
@@ -178,6 +185,7 @@ var get = function get(key) {
     var expires = localStorage.getItem("".concat(key).concat(EXPIRES_KEY_SUFFIX));
 
     if (expires && Number(expires) < now) {
+      deleteExpired(key);
       resolve(null);
       return;
     }
