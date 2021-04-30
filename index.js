@@ -97,13 +97,13 @@ const set = (key, value, options = {}) => {
 
   if (expires) {
     localStorage.setItem(key, JSON.stringify({
-      value,
+      value: String(value),
       expires
     }));
     return true;
   }
 
-  localStorage.setItem(key, { value });
+  localStorage.setItem(key, { value: String(value) });
 
   return true;
 }
