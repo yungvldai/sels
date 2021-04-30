@@ -25,12 +25,12 @@ interface IRecordOptions {
   expires?: string | Date
 }
 
-type RecordValueType = string | boolean | number;
+type RecordValue = string | boolean | number;
 ```
 
 ## Методы
 
-`set(key: string, value: RecordValueType, options: IRecordOptions): boolean` - добавляет или модифицирует запись в **localStorage**. `value` будет приведен к строке. 
+`set(key: string, value: RecordValue, options: IRecordOptions): boolean` - добавляет или модифицирует запись в **localStorage**. `value` будет приведен к строке. 
 Перед записью проверится возможность записи, если запись не удалась, вернет `false`, иначе `true`.
 
 `get(key: string): Promise` - читает запись из **localStorage**. Перед чтением проверяет возможность чтения. Если прочиать не удалось, промис будет отклонен со значением ошибки, 
