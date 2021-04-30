@@ -1,8 +1,9 @@
 {
   "name": "sels",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Safe & expirable localStorage",
-  "main": "index.js",
+  "main": "build/index.js",
+  "files": [],
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack/build.config.js",
     "clean": "rm -rf build/",

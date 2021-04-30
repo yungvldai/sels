@@ -51,6 +51,8 @@ const set = (key: string, value: RecordValueType, options?: IRecordOptions) => {
 
   if (expires) {
     localStorage.setItem(`${key}${EXPIRES_KEY_SUFFIX}`, String(expires));
+  } else {
+    localStorage.removeItem(`${key}${EXPIRES_KEY_SUFFIX}`);
   }
 
   return true;
@@ -65,6 +67,11 @@ const remove = (key: string) => {
   return true;
 };
 
+const deleteExpired = (key: string) => {
+  localStorage.removeItem(key);
+  localStorage.removeItem(`${key}${EXPIRES_KEY_SUFFIX}`);
+};
+
 const get = (key: string) => {
   return new Promise((resolve, reject) => {
     if (!isLocalStorageAvailable) {
@@ -77,6 +84,7 @@ const get = (key: string) => {
     const expires = localStorage.getItem(`${key}${EXPIRES_KEY_SUFFIX}`);
 
     if (expires && Number(expires) < now) {
+      deleteExpired(key);
       resolve(null);
       return;
     }
