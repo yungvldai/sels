@@ -11,7 +11,10 @@ module.exports = {
   mode: env,
   output: {
     path: path.resolve(__dirname, '../build'),
-    filename: '[name].js'
+    filename: '[name].js',
+    library: 'Sels',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   resolve: {
     alias: {
