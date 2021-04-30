@@ -23,14 +23,14 @@ const getTimestamp = (date: Date | string) => {
   return null;
 };
 
-type RecordValueType = string | boolean | number;
+type RecordValue = string | boolean | number;
 
 interface IRecordOptions {
   maxAge?: number;
   expires?: Date | string;
 }
 
-const set = (key: string, value: RecordValueType, options?: IRecordOptions) => {
+const set = (key: string, value: RecordValue, options?: IRecordOptions) => {
   if (!isLocalStorageAvailable) {
     return false;
   }
