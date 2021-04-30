@@ -102,9 +102,12 @@ const clear = () => {
   return true;
 };
 
-export default {
+const Sels = Object.freeze({
   clear,
   get,
   set,
   remove
-};
+});
+
+export default Sels;
+export { clear, get, set, remove };

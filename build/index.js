@@ -2,7 +2,7 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define([], factory);
+		define("Sels", [], factory);
 	else if(typeof exports === 'object')
 		exports["Sels"] = factory();
 	else
@@ -38,6 +38,8 @@ var __webpack_exports__ = {};
 __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ src)
 });
+
+// UNUSED EXPORTS: clear, get, remove, set
 
 ;// CONCATENATED MODULE: ./src/avail.ts
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -238,12 +240,14 @@ var clear = function clear() {
   return true;
 };
 
-/* harmony default export */ const src = ({
+var Sels = Object.freeze({
   clear: clear,
   get: get,
   set: set,
   remove: remove
 });
+/* harmony default export */ const src = (Sels);
+
 __webpack_exports__ = __webpack_exports__.default;
 /******/ 	return __webpack_exports__;
 /******/ })()
