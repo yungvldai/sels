@@ -1,0 +1,55 @@
+{
+  "name": "sels",
+  "version": "1.0.0",
+  "description": "Safe & expirable localStorage",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --config webpack/build.config.js",
+    "clean": "rm -rf build/",
+    "format": "prettier --write src/",
+    "lint": "eslint --fix --ext .ts src/",
+    "precommit": "lint-staged",
+    "prepush": "npm test && npm run clean && npm run build",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run format",
+      "npm run lint"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yungvldai/sels.git"
+  },
+  "keywords": [
+    "localstorage"
+  ],
+  "author": "Vlad Ivanov <vladivanov.dev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yungvldai/sels/issues"
+  },
+  "homepage": "https://github.com/yungvldai/sels#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.25.0",
+    "husky": "^6.0.0",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "terser-webpack-plugin": "^5.1.1",
+    "ts-jest": "^26.5.5",
+    "typescript": "^4.2.4",
+    "webpack": "^5.35.1",
+    "webpack-cli": "^4.6.0"
+  }
+}
