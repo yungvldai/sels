@@ -24,7 +24,7 @@ sels.set('key', 'value');
 или
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/yungvldai/sels@master/build/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sels@latest/index.min.js"></script>
 ```
 ```js
 Sels.set('key', 'value');

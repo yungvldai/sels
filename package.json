@@ -1,19 +1,21 @@
 {
   "name": "sels",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Safe & expirable localStorage",
-  "main": "build/index.js",
+  "main": "index.js",
   "files": [
-    "build/index.min.js"
+    "index.min.js"
   ],
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack/build.config.js",
     "clean": "rm -rf build/",
+    "pack": "cp package.json README.md LICENSE build/",
     "format": "prettier --write src/",
     "lint": "eslint --fix --ext .ts src/",
     "precommit": "lint-staged",
     "prepush": "npm test && npm run clean && npm run build",
-    "test": "jest"
+    "test": "jest",
+    "prepare-build": "npm run clean && npm run build && npm run pack"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
