@@ -17,7 +17,7 @@ const getTimestamp = (date: Date | string) => {
     /**
      * Если ничего не заматчится, то вернется дата сейчас
      */
-    return parsePeriod(date);
+    return parsePeriod(date).getTime();
   }
 
   return null;
