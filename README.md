@@ -32,7 +32,7 @@ Sels.set('key', 'value');
 
 ## Типы
 
-```
+```ts
 interface IRecordOptions {
   maxAge?: number
   expires?: string | Date
