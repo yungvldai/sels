@@ -114,13 +114,16 @@ const clear = () => {
   return true;
 };
 
+const isAvailable = isLocalStorageAvailable;
+
 const Sels = Object.freeze({
   clear,
   get,
   asyncGet,
   set,
-  remove
+  remove,
+  isAvailable
 });
 
 export default Sels;
-export { clear, get, asyncGet, set, remove };
+export { clear, get, asyncGet, set, remove, isAvailable };
