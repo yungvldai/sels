@@ -98,6 +98,7 @@ const asyncGet = (key: string) => {
   return new Promise((resolve, reject) => {
     if (!isLocalStorageAvailable) {
       reject(error);
+      return;
     }
 
     resolve(_internalGet(key));
