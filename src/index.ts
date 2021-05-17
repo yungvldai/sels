@@ -94,7 +94,7 @@ const get = (key: string) => {
   return _internalGet(key);
 };
 
-const getAsync = (key: string) => {
+const asyncGet = (key: string) => {
   return new Promise((resolve, reject) => {
     if (!isLocalStorageAvailable) {
       reject(error);
@@ -116,10 +116,10 @@ const clear = () => {
 const Sels = Object.freeze({
   clear,
   get,
-  getAsync,
+  asyncGet,
   set,
   remove
 });
 
 export default Sels;
-export { clear, get, getAsync, set, remove };
+export { clear, get, asyncGet, set, remove };

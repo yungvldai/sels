@@ -12,7 +12,7 @@ sels - safe expirable **localStorage**
 ## Установка и использование
 
 ```bash
-npm i sels@1.1.0
+npm i sels
 ```
 
 ```js
@@ -24,11 +24,15 @@ sels.set('key', 'value');
 или
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/sels@1.1.0/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sels@latest/index.min.js"></script>
 ```
 ```js
 Sels.set('key', 'value');
 ```
+
+## Важные изменения ⚠️
+
+ - Метод `get` версии 1.x.x переименован в `asyncGet` (см. описание ниже ниже)
 
 ## Типы
 
@@ -46,7 +50,7 @@ type RecordValue = string | boolean | number;
 `set(key: string, value: RecordValue, options?: IRecordOptions): boolean` - добавляет или модифицирует запись в **localStorage**. `value` будет приведен к строке. 
 Перед записью проверится возможность записи, если запись не удалась, вернет `false`, иначе `true`.
 
-`getAsync(key: string): Promise` - читает запись из **localStorage**. Перед чтением проверяет возможность чтения. Если прочиать не удалось, промис будет отклонен со значением ошибки, 
+`asyncGet(key: string): Promise` - читает запись из **localStorage**. Перед чтением проверяет возможность чтения. Если прочиать не удалось, промис будет отклонен со значением ошибки, 
 иначе промис будет разрешен с прочитанным значением. Промис разрешится со значением `null`, если указанный ключ не найден.
 
 `get(key: string): string | null` - читает запись из **localStorage**. Перед чтением проверяет возможность чтения. Если прочитать не удалось, вернется `null`, иначе
