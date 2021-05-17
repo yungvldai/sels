@@ -72,24 +72,35 @@ const deleteExpired = (key: string) => {
   localStorage.removeItem(`${key}${EXPIRES_KEY_SUFFIX}`);
 };
 
+const _internalGet = (key: string) => {
+  const now = Date.now();
+
+  const value = localStorage.getItem(key);
+  const expires = localStorage.getItem(`${key}${EXPIRES_KEY_SUFFIX}`);
+
+  if (expires && Number(expires) < now) {
+    deleteExpired(key);
+    return null;
+  }
+
+  return value;
+};
+
 const get = (key: string) => {
+  if (!isLocalStorageAvailable) {
+    return null;
+  }
+
+  return _internalGet(key);
+};
+
+const getAsync = (key: string) => {
   return new Promise((resolve, reject) => {
     if (!isLocalStorageAvailable) {
       reject(error);
     }
 
-    const now = Date.now();
-
-    const value = localStorage.getItem(key);
-    const expires = localStorage.getItem(`${key}${EXPIRES_KEY_SUFFIX}`);
-
-    if (expires && Number(expires) < now) {
-      deleteExpired(key);
-      resolve(null);
-      return;
-    }
-
-    resolve(value);
+    resolve(_internalGet(key));
   });
 };
 
@@ -105,9 +116,10 @@ const clear = () => {
 const Sels = Object.freeze({
   clear,
   get,
+  getAsync,
   set,
   remove
 });
 
 export default Sels;
-export { clear, get, set, remove };
+export { clear, get, getAsync, set, remove };
