@@ -12,7 +12,7 @@ sels - safe expirable **localStorage**
 ## Установка и использование
 
 ```bash
-npm i sels
+npm i sels@1.1.0
 ```
 
 ```js
@@ -32,7 +32,7 @@ Sels.set('key', 'value');
 
 ## Типы
 
-```
+```ts
 interface IRecordOptions {
   maxAge?: number
   expires?: string | Date
