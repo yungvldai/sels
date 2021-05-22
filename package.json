@@ -15,6 +15,7 @@
     "precommit": "lint-staged",
     "prepush": "npm test && npm run clean && npm run build",
     "test": "jest",
+    "cov": "jest --collectCoverage",
     "prepare-build": "npm run clean && npm run build && npm run pack"
   },
   "lint-staged": {
