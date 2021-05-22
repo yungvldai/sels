@@ -2,6 +2,7 @@
 sels - safe expirable **localStorage**
 
 [![npm version](https://badge.fury.io/js/sels.svg)](https://www.npmjs.com/package/sels)
+[![Tests](https://github.com/yungvldai/sels/actions/workflows/main.yml/badge.svg)](https://github.com/yungvldai/sels/actions/workflows/main.yml)
 
 Использование кук в client-only целях - нерационально и небезопасно. Нет смысла использовать куки, если данные не предназначены для отправки на сервер.
 В таком случае нужно использовать **localStorage**. Однако, **localStorage** может быть не доступен (тогда будет генерироваться ошибка), а еще в **localStorage**
