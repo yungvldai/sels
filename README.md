@@ -4,13 +4,11 @@ sels - safe expirable **localStorage**
 [![npm version](https://badge.fury.io/js/sels.svg)](https://www.npmjs.com/package/sels)
 [![Tests](https://github.com/yungvldai/sels/actions/workflows/main.yml/badge.svg)](https://github.com/yungvldai/sels/actions/workflows/main.yml)
 
-Использование кук в client-only целях - нерационально и небезопасно. Нет смысла использовать куки, если данные не предназначены для отправки на сервер.
-В таком случае нужно использовать **localStorage**. Однако, **localStorage** может быть не доступен (тогда будет генерироваться ошибка), а еще в **localStorage**
-нет механизма времени жизни (expiry).
+Using cookies for client-only purposes is irrational and unsafe. There is no point in using cookies if the data is not intended to be sent to the server. In this case, you need to use localStorage. However, localStorage may not be available (then an error will be generated), and there is no expiry mechanism in localStorage.
 
-*Эта библиотека решает обе проблемы*
+*This library solves both problems*
 
-## Установка и использование
+## Installing and usage
 
 ```bash
 npm i sels
@@ -31,11 +29,11 @@ sels.set('key', 'value');
 Sels.set('key', 'value');
 ```
 
-## Важные изменения ⚠️
+## Breaking changes ⚠️
 
- - Метод `get` версии 1.x.x переименован в `asyncGet` (см. описание ниже ниже)
+ - The method `get` version 1.x.x has been renamed to `asyncGet` (see description below)
 
-## Типы
+## Types & interfaces
 
 ```ts
 interface IRecordOptions {
@@ -46,34 +44,31 @@ interface IRecordOptions {
 type RecordValue = string | boolean | number;
 ```
 
-## Методы
+## Methods
 
-`set(key: string, value: RecordValue, options?: IRecordOptions): boolean` - добавляет или модифицирует запись в **localStorage**. `value` будет приведен к строке. 
-Перед записью проверится возможность записи, если запись не удалась, вернет `false`, иначе `true`.
+`set(key: string, value: RecordValue, options?: IRecordOptions): boolean` - adds or modifies a record in **localStorage**. `value` will be cast to string. 
+Before write, the ability to write will be checked, if the recording failed, it will return `false`, else `true`.
 
-`asyncGet(key: string): Promise` - читает запись из **localStorage**. Перед чтением проверяет возможность чтения. Если прочиать не удалось, промис будет отклонен со значением ошибки, 
-иначе промис будет разрешен с прочитанным значением. Промис разрешится со значением `null`, если указанный ключ не найден.
+`asyncGet(key: string): Promise` - reads a record from **localStorage**. Checks readability before reading. If it fails, the Promise will be rejected with an error value, otherwise the Promise will be resolved with the read value. Promise will resolve with value `null`, if the specified key is not found.
 
-`get(key: string): string | null` - читает запись из **localStorage**. Перед чтением проверяет возможность чтения. Если прочитать не удалось, вернется `null`, иначе
-вернется значение ключа. Если ключ не найден, также вернется `null`.
+`get(key: string): string | null` - reads a record from **localStorage**. Checks readability before reading. If the read failed, it will return `null`, otherwise the key value will be returned. If the key is not found, it will also return `null`.
 
-`remove(key: string)` - удаляет запись из **localStorage**. Перед удалением проверяет возможно ли. Вернет `true`, если удаление успешно, `false`, если нет. 
-В случае, если ключ не будет найден, однако ошибки не будет, вернется все равно `true`.
+`remove(key: string)` - removes record from **localStorage**. Before deleting, it checks if deletion is possible. It will return `true`, if deletion is successful, else `false`. 
+If the key is not found, but there is no error, it will return `true` anyway.
 
-`clear()` - полностью очищает **localStorage**, вернет `true`, если успешно, иначе `false`.
+`clear()` - completely cleans **localStorage**, it will return `true`, if successful, else `false`.
 
-## Другое
+## Fields
 
-`Sels` экспортирует значение `isAvailable: boolean` - доступность **localStorage**.
+`Sels` also exports value `isAvailable: boolean` - availability of **localStorage**.
 
-## Опции 
+## Options 
 
-В метод `set` третьим (опциональным) аргументом можно передать объект опций. Если не передать ничего, записи будут вечными.
+The `set` method takes a third (optional) parameter - `options`. If nothing is passed, the record will be eternal.
 
- - `maxAge` нужен для указания количества секунд - времени жизни записи. После истечения этого времени запись перестанет быть доступной.
- - `expires` служит для указания строки даты или объекта `Date`, после которой запись должна стать недоступной. 
-Дату можно передать строкой, например, *ISO string* или просто `12-31-2021`. Для парсинга используется [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse).
-Также можно указать промежуток, например, `1w 2d 3h`, 
-так запись перестанет читаться через 1 неделю (7 дней) + 2 дня + 3 часа. Доступные единицы: `y`, `m`, `w`, `d`, `h` (год, месяц, неделя, день, час соответственно).
+ - `maxAge` is needed to indicate the number of seconds - the lifetime of the record. After this time expires, the record will no longer be available.
+ - `expires` is needed to specify a date string or object `Date`, after which the record should become inaccessible. 
+The date can be passed as a string (e.g. *ISO string* or `12-31-2021`). [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse) will be used for parsing.
+You can also specify a Jira-like period, for example, `1w 2d 3h`, so the record will stop being read after 1 week (7 days) + 2 days + 3 hours. Supported units: `y`, `m`, `w`, `d`, `h` (year, month, week, day, hour).
 
 
