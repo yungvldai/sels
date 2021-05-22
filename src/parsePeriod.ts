@@ -1,6 +1,6 @@
 const tokenRegex = /^(\d+)([dwmyh]{1})$/i;
 
-const parsePeriod = (input: string) => {
+const parsePeriod = (input: string): Date => {
   return input.split(' ').reduce((result: Date, token: string) => {
     const matchResult = token.match(tokenRegex);
 

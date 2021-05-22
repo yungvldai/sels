@@ -30,7 +30,26 @@ interface IRecordOptions {
   expires?: Date | string;
 }
 
-const set = (key: string, value: RecordValue, options?: IRecordOptions) => {
+const _internalRemove = (key: string) => {
+  localStorage.removeItem(key);
+  localStorage.removeItem(`${key}${EXPIRES_KEY_SUFFIX}`);
+};
+
+const _internalGet = (key: string) => {
+  const now = Date.now();
+
+  const value = localStorage.getItem(key);
+  const expires = localStorage.getItem(`${key}${EXPIRES_KEY_SUFFIX}`);
+
+  if (expires && Number(expires) < now) {
+    _internalRemove(key);
+    return null;
+  }
+
+  return value;
+};
+
+const set = (key: string, value: RecordValue, options?: IRecordOptions): boolean => {
   if (!isLocalStorageAvailable) {
     return false;
   }
@@ -39,8 +58,8 @@ const set = (key: string, value: RecordValue, options?: IRecordOptions) => {
 
   let expires = null;
 
-  if (maxAge) {
-    expires = Date.now() + MS_PER_S * maxAge;
+  if (!Number.isNaN(Number(maxAge))) {
+    expires = Date.now() + MS_PER_S * maxAge!;
   }
 
   if (expiresDate) {
@@ -58,35 +77,16 @@ const set = (key: string, value: RecordValue, options?: IRecordOptions) => {
   return true;
 };
 
-const remove = (key: string) => {
+const remove = (key: string): boolean => {
   if (!isLocalStorageAvailable) {
     return false;
   }
 
-  localStorage.removeItem(key);
+  _internalRemove(key);
   return true;
 };
 
-const deleteExpired = (key: string) => {
-  localStorage.removeItem(key);
-  localStorage.removeItem(`${key}${EXPIRES_KEY_SUFFIX}`);
-};
-
-const _internalGet = (key: string) => {
-  const now = Date.now();
-
-  const value = localStorage.getItem(key);
-  const expires = localStorage.getItem(`${key}${EXPIRES_KEY_SUFFIX}`);
-
-  if (expires && Number(expires) < now) {
-    deleteExpired(key);
-    return null;
-  }
-
-  return value;
-};
-
-const get = (key: string) => {
+const get = (key: string): string | null => {
   if (!isLocalStorageAvailable) {
     return null;
   }
@@ -94,7 +94,7 @@ const get = (key: string) => {
   return _internalGet(key);
 };
 
-const asyncGet = (key: string) => {
+const asyncGet = (key: string): Promise<string | null> => {
   return new Promise((resolve, reject) => {
     if (!isLocalStorageAvailable) {
       reject(error);
@@ -105,7 +105,7 @@ const asyncGet = (key: string) => {
   });
 };
 
-const clear = () => {
+const clear = (): boolean => {
   if (!isLocalStorageAvailable) {
     return false;
   }
