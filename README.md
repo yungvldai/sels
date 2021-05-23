@@ -71,4 +71,7 @@ The `set` method takes a third (optional) parameter - `options`. If nothing is p
 The date can be passed as a string (e.g. *ISO string* or `12-31-2021`). [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse) will be used for parsing.
 You can also specify a Jira-like period, for example, `1w 2d 3h`, so the record will stop being read after 1 week (7 days) + 2 days + 3 hours. Supported units: `y`, `m`, `w`, `d`, `h` (year, month, week, day, hour).
 
+# Translations
 
+ - [🇷🇺 Русский](https://github.com/yungvldai/sels/blob/master/translations/ru/README.md)
+ - [🇺🇸 English (this)](https://github.com/yungvldai/sels/blob/master/README.md)
