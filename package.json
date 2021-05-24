@@ -1,6 +1,6 @@
 {
   "name": "sels",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Safe & expirable localStorage",
   "main": "index.js",
   "files": [
