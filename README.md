@@ -1,9 +1,9 @@
 # sels 🍪➡️🗄
 sels - safe expirable **localStorage**
 
-![npm](https://img.shields.io/npm/v/sels?color=cc3534)
+[![npm](https://img.shields.io/npm/v/sels?color=cc3534)](https://www.npmjs.com/package/sels)
 [![Tests](https://github.com/yungvldai/sels/actions/workflows/main.yml/badge.svg)](https://github.com/yungvldai/sels/actions/workflows/main.yml)
-![LICENSE](https://img.shields.io/github/license/yungvldai/sels?color=yellow)
+[![LICENSE](https://img.shields.io/github/license/yungvldai/sels?color=yellow)](https://github.com/yungvldai/sels/blob/master/LICENSE)
 ![Package size](https://img.shields.io/github/size/yungvldai/sels/.size/index.min.js)
 
 Using cookies for client-only purposes is irrational and unsafe. There is no point in using cookies if the data is not intended to be sent to the server. In this case, you need to use localStorage. However, localStorage may not be available (then an error will be generated), and there is no expiry mechanism in localStorage.

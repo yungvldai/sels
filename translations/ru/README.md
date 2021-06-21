@@ -1,9 +1,9 @@
 # sels 🍪➡️🗄
 sels - safe expirable **localStorage**
 
-![npm](https://img.shields.io/npm/v/sels?color=cc3534)
+[![npm](https://img.shields.io/npm/v/sels?color=cc3534)](https://www.npmjs.com/package/sels)
 [![Tests](https://github.com/yungvldai/sels/actions/workflows/main.yml/badge.svg)](https://github.com/yungvldai/sels/actions/workflows/main.yml)
-![LICENSE](https://img.shields.io/github/license/yungvldai/sels?color=yellow)
+[![LICENSE](https://img.shields.io/github/license/yungvldai/sels?color=yellow)](https://github.com/yungvldai/sels/blob/master/LICENSE)
 ![Package size](https://img.shields.io/github/size/yungvldai/sels/.size/index.min.js)
 
 Использование кук в client-only целях - нерационально и небезопасно. Нет смысла использовать куки, если данные не предназначены для отправки на сервер.
