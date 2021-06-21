@@ -12,6 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../build'),
     filename: '[name].js',
+    globalObject: 'this',
     library: 'Sels',
     libraryTarget: 'umd',
     libraryExport: 'default',
