@@ -1,15 +1,17 @@
 {
   "name": "sels",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Safe & expirable localStorage",
   "main": "index.js",
+  "types": "index.d.ts",
   "files": [
     "index.min.js"
   ],
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config webpack/build.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/build.config.js && npm run showsize",
+    "showsize": "cp ./build/index.min.js .size/",
     "clean": "rm -rf build/",
-    "pack": "cp package.json README.md LICENSE build/",
+    "pack": "cp package.json README.md LICENSE build/ && cp -r types/ build/",
     "format": "prettier --write src/",
     "lint": "eslint --fix --ext .ts src/",
     "precommit": "lint-staged",
