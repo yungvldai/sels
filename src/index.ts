@@ -66,7 +66,11 @@ const set = (key: string, value: RecordValue, options?: IRecordOptions): boolean
     expires = getTimestamp(expiresDate);
   }
 
-  localStorage.setItem(key, String(value));
+  if (typeof value === 'object') {
+    localStorage.setItem(key, JSON.stringify(value));
+  } else {
+    localStorage.setItem(key, String(value));
+  }
 
   if (expires) {
     localStorage.setItem(`${key}${EXPIRES_KEY_SUFFIX}`, String(expires));
