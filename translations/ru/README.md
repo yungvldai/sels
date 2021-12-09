@@ -40,7 +40,7 @@ Sels.set('key', 'value');
 ## Типы
 
 ```ts
-interface IRecordOptions {
+interface RecordOptions {
   maxAge?: number
   expires?: string | Date
 }
@@ -50,7 +50,7 @@ type RecordValue = string | boolean | number;
 
 ## Методы
 
-`set(key: string, value: RecordValue, options?: IRecordOptions): boolean` - добавляет или модифицирует запись в **localStorage**. `value` будет приведен к строке. 
+`set(key: string, value: RecordValue, options?: RecordOptions): boolean` - добавляет или модифицирует запись в **localStorage**. `value` будет приведен к строке. 
 Перед записью проверится возможность записи, если запись не удалась, вернет `false`, иначе `true`.
 
 `asyncGet(key: string): Promise` - читает запись из **localStorage**. Перед чтением проверяет возможность чтения. Если прочиать не удалось, промис будет отклонен со значением ошибки, 

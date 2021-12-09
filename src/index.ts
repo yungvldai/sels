@@ -1,6 +1,7 @@
 import isLocalStorageAvailable, { error } from './avail';
 import parsePeriod from './parsePeriod';
 import { EXPIRES_KEY_SUFFIX, MS_PER_S } from './constants';
+import { RecordValue, RecordOptions } from './types';
 
 const getTimestamp = (date: Date | string) => {
   if (date instanceof Date) {
@@ -23,13 +24,6 @@ const getTimestamp = (date: Date | string) => {
   return null;
 };
 
-type RecordValue = string | boolean | number;
-
-interface IRecordOptions {
-  maxAge?: number;
-  expires?: Date | string;
-}
-
 const _internalRemove = (key: string) => {
   localStorage.removeItem(key);
   localStorage.removeItem(`${key}${EXPIRES_KEY_SUFFIX}`);
@@ -49,7 +43,7 @@ const _internalGet = (key: string) => {
   return value;
 };
 
-const set = (key: string, value: RecordValue, options?: IRecordOptions): boolean => {
+const set = (key: string, value: RecordValue, options?: RecordOptions): boolean => {
   if (!isLocalStorageAvailable) {
     return false;
   }
